@@ -19,11 +19,14 @@ Route::get('/', function () {
 });
 
 
-Route::group(['prefix'=> 'admin'], function () {
-    Route::group(['middleware'=> 'admin.guest'], function () {
+
+Route::prefix("admin")->name("admin.")->group(function () {
+    Route::middleware(["guest:admin"])->group(function () {
         Route::get('/login',[AdminLogincontroller::class,'index'] )->name('admin-login');
+        Route::get('/dashboard', [AdminLogincontroller::class,'dashboard'])->name('admin-dashboard');
     });
-    Route::group(['middleware'=> 'admin.auth'], function () {
-        
+    Route::middleware(["auth:admin"])->group(function () {
+       
     });
+
 });

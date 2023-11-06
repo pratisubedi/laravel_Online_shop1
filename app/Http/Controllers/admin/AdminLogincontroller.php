@@ -10,4 +10,8 @@ class AdminLogincontroller extends Controller
     public function index(){
         return view("admin/login");
     }
+
+    public function dashboard(){
+         echo"hello dashboard";
+    }
 }
