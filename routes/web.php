@@ -21,12 +21,14 @@ Route::get('/', function () {
 
 
 Route::prefix("admin")->name("admin.")->group(function () {
-    Route::middleware(["guest:admin","PreventBackHistory"])->group(function () {
-        Route::get('/login',[AdminLogincontroller::class,'index'] )->name('login');
+    Route::middleware(["guest:admin"])->group(function () {
+        //Route::get('/login',[AdminLogincontroller::class,'index'] )->name('login');
         Route::post('/authenticate',[AdminLogincontroller::class,'authenticate'] )->name('authenticate');
-    });
-    Route::middleware(["auth:admin","PreventBackHistory"])->group(function () {
         Route::get('/dashboard', [AdminLogincontroller::class,'dashboard'])->name('dashboard');
+    });
+    Route::middleware(["auth:admin"])->group(function () {
+        
+        Route::get('/login',[AdminLogincontroller::class,'index'] )->name('login');
     });
 
 });
