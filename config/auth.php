@@ -76,6 +76,9 @@ return [
             'driver' => 'session',
             'model' => App\Models\User::class,
         ],
+        'session' => [
+            'driver' => 'session',
+        ],
 
         // 'users' => [
         //     'driver' => 'database',
